@@ -1,0 +1,35 @@
+<template name="App_home">
+
+<!-- Main header nav bar for all renders -->
+{{> mainHeader }}
+    
+<!-- Only render app data if logged in -->
+{{#if currentUser}}
+    
+	<!-- Default to show main bet index unless router has given us vars otherwise -->
+    {{#if newBet }}
+      {{>bet_add}}
+    {{else}}  
+      {{#if showBet }}
+        {{>bet_show}}
+      {{else}}
+        {{#if showProfile }}
+          {{>profile}}
+         {{else}}
+           {{> bet }}
+        {{/if}}
+      {{/if}}
+    {{/if}}
+
+     
+{{else}}
+<!-- Force user to login/register if not logged in -->
+    {{#if registerState}}
+      {{> register }}
+    {{else}}
+      {{> login }}
+    {{/if}}
+    
+{{/if}}
+    
+</template>

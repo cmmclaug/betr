@@ -1,0 +1,40 @@
+<template name="viewButton">
+  <button type="button" class="ui btn btn-xs orange view-button">View</button>
+</template>
+
+<template name="bet">
+    <div class="ui vertical center aligned segment">
+        <div class="ui stackable container grid">
+            <div class="row">
+                <div class="sixteen wide column">
+                    <br>
+                    <br>
+                    <br>
+                    <h1 class="ui header">Bets</h1>
+                </div>
+            </div>
+            <div class="row">
+              <div class="two wide column"></div>
+                <div class="twelve wide column left aligned">
+                  <div class="row">
+                    <div class="twelve wide column left aligned">
+                      <div class="sixteen wide field">
+                        <h2 class="ui icon orange center aligned header new-bet">
+                          <i class="add square icon"></i>
+                          <div class="content">
+                            New Bet
+                          </div>
+                        </h2>
+                      </div>
+					  <!-- main bet table... configured in datatable-config -->
+					  {{> tabular table=TabularTables.BetTable class="table table-striped table-bordered table-condensed"}}
+					    <br>
+                        <br>
+                      </div>
+					</div>
+                </div>
+                <div class="two wide column"></div>
+            </div>
+        </div>
+    </div>
+</template>

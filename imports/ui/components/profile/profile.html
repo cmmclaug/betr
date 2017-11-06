@@ -1,0 +1,59 @@
+<template name="profile">
+    <div class="ui vertical center aligned segment">
+        <div class="ui stackable container grid">
+            <div class="row">
+                <div class="sixteen wide column">
+                <br>
+                <br>
+                <br>
+                    <h1 class="ui header">Profile</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="four wide column"></div>
+                <div class="eight wide column center aligned">
+                    <form class="ui form" id="login-form" action="action">
+                        <div class="ui two fields">
+                            <div class="ui field center aligned text large icon">
+                                <i class="user icon"></i>: 
+                            </div>
+							<div class="ui field left aligned  text large icon">
+								{{currentUser.username}}
+                            </div>
+						</div>
+						<div class="ui two fields">
+                            <div class="ui field center aligned text large icon">
+                                <i class="history icon"></i>: 
+                            </div>
+							<div class="ui field left aligned icon">
+					            {{formatDate currentUser.createdAt}}
+                            </div>
+						</div>
+						<div class="ui two fields">
+                            <div class="ui field center aligned text large icon">
+                                <i class="picture icon"></i>: 
+								<br>
+							    <button class="update-button ui basic secondary button bottom aligned" id="updatePic" type="submit">Update Picture</button>
+                            </div>
+							<div class="ui field left aligned icon">
+					            {{> avatar user=currentUser size='profile'}}
+                            </div>
+						</div>
+						<br>
+                        <br>
+                        <br>
+						<div class="ui two fields">
+                            <div class="ui field center aligned">
+                                <button class="home-button ui secondary huge button" id="home" type="submit">Home</button>
+                            </div>
+							<div class="ui field center aligned">
+					            <button class="logout-button ui secondary huge button" id="logout" type="submit">Logout</button>
+                            </div>
+						</div>
+                    </form>
+                </div>
+                <div class="four wide column"></div>
+            </div>
+        </div>
+    </div>
+</template>

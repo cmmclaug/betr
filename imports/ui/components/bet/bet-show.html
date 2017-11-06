@@ -1,0 +1,127 @@
+<template name="bet_show">
+    <!-- Array causes reload when data updated in db -->
+    {{#if betIdArray}}
+	{{#each bet}}
+    <div class="ui vertical center aligned segment">
+        <div class="ui stackable container grid">
+            <div class="row">
+                <div class="sixteen wide column">
+                    <br>
+                    <br>
+                    <br>
+                    <h1 class="ui header">View Bet: {{title}}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="four wide column"></div>
+                <div class="eight wide column left aligned">
+                    <div class="ui form" id="create-form" action="action">
+                        <form class="bet-modify-info">
+                           <div class="row">
+                            <div class="twelve wide column left aligned">
+                                <div class="sixteen wide field">
+                                   <h2 class="ui icon orange center aligned header">
+                                     <i class="settings icon"></i>
+                                     <div class="content">
+                                       Bet State: {{betState}}
+                                    </div>
+                                   </h2>
+                                </div>
+								<br>
+								<br>
+								<div class="three fields">
+								  <div class="field">
+                                   {{> avatar userId=creatorId size='profile' shape='circle'}}
+                                    <label>Creator</label>
+                                    <div class="ui input">
+                                      <input class="creator" type="text" value={{currentUser.username}} id="creator" disabled="true" />
+                                    </div>
+                                  </div>
+								<div class="field">
+								  <img src="/img/vs_spacer.png" width="160" height="160"/>
+								</div>
+								<div class="field">
+								    {{> avatar userId=opponentId size='profile' shape='circle'}}
+                                  <label>Opponent</label>
+                                    <div class="ui input">
+                                      <input class="opponent" type="text" value={{opponentName}} id="opponent" disabled="true" />
+                                    </div>
+                                </div>
+								</div>
+                                <div class="field">
+                                    <label>Terms</label>
+                                    <div class="ui input">
+									    {{#if isModified }}
+                                          <textarea  class="newterms" rows="3"  value={{terms}} type="text" placeholder="Enter Bet Terms" id="newterms" required></textarea>
+										{{else }}
+										  <textarea  class="terms" disabled="true" value={{terms}} rows="3"  type="text" placeholder="Enter Bet Terms" id="terms" required></textarea>
+										{{/if}}
+                                    </div>
+                                </div>
+								<div class="field">
+                                    <label>Wager</label>
+                                    <div class="ui input icon">
+									    <i class="bitcoin icon"></i>
+										{{#if isModified }}
+                                          <input class="newwager" type="text" value={{wager}} placeholder="Enter Wager" id="newwager" required/>
+										{{ else }}
+										  <input class="wager" disabled="true" value={{wager}} type="text" placeholder="Enter Wager" id="wager" required/>
+										{{/if}}
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Resolution Date</label>
+                                    <div class="ui input fluid">
+									    <div class="input-group datetimepicker"> 
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            <input class="set-due-date form-control" value={{resolutionTime}} disabled='true' name='resolutionTime' placeholder='Select Resolution Date' type="text" required/>
+                                        </div>
+                                    </div>
+                                </div>
+					            <br>
+                                <br>
+								<!-- If completed remove UI buttons -->
+								<!-- If accepted only show concede option -->
+								{{#if isNotCompleted}}
+								{{#if isAccepted }}
+								<div class="ui field center aligned ">
+								  <button class="concede-button ui secondary huge button" id="concede" type="submit">Concede!</button>
+								 </div>
+								  
+								 {{ else }}
+								 <div class="ui three fields center aligned">
+                                  <div class="ui field">
+								  {{#if isModified }}
+                                    <button class="update-button ui secondary huge button" id="update" type="submit">Update</button>
+								  {{else}}
+								    <button class="accept-button ui secondary huge button" id="create" type="submit">Accept</button>
+								  {{/if}}
+                                  </div>
+								  <div class="ui field">
+								    {{#if isModified }}
+                                      <button class="unedit-button ui secondary huge button" id="unedit" type="submit">Unedit</button>
+									{{else}}
+									  <button class="modify-button ui secondary huge button" id="modify" type="submit">Modify</button>
+									{{/if}}
+                                  </div>
+							      <div class="ui field">
+					                <button class="delete-button ui secondary huge button" id="delete" type="submit">Delete</button>
+                                  </div>
+						        </div>
+								 {{/if}}
+								 {{/if}}
+                             </div>
+						  </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="four wide column"></div>
+            </div>
+        </div>
+    </div>
+  {{/each}}
+  <!-- If you aren't on a valid betId path, show not found -->
+  {{else}}
+    {{> App_notFound}}
+  {{/if}}
+</template>

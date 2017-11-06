@@ -1,0 +1,98 @@
+<template name="bet_add">
+    <div class="ui vertical center aligned segment">
+        <div class="ui stackable container grid">
+            <div class="row">
+                <div class="sixteen wide column">
+                    <br>
+                    <br>
+                    <br>
+                    <h1 class="ui header">Create New Bet</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="four wide column"></div>
+                <div class="eight wide column left aligned">
+                    <div class="ui form" id="create-form" action="action">
+                        <form class="bet-add-info">
+                           <div class="row">
+                            <div class="twelve wide column left aligned">
+                                <div class="sixteen wide field">
+                                    <label>Title</label>
+                                    <div class="ui input">
+                                        <input class="title" type="text" placeholder="Enter Title" id="title" required/>
+                                    </div>
+                                </div>
+								<br>
+								<br>
+								<div class="three fields">
+								  <div class="field">
+                                   {{> avatar user=currentUser size='profile' shape='circle'}}
+                                    <label>Creator</label>
+                                    <div class="ui input">
+                                      <input class="creator" type="text" value={{currentUser.username}} id="creator" disabled="true" />
+                                    </div>
+                                  </div>
+								<div class="field">
+								  <img src="/img/vs_spacer.png" width="160" height="160"/>
+								</div>
+								<div class="field">
+								   <!-- Responsive update of opponent avatar -->
+								  {{ #if opponentSelect }}
+								    {{> avatar userId=opponentSelect size='profile' shape='circle'}}
+								  {{ else }}
+								    <img src="/img/opponent.png" width="160" height="160"/>
+								  {{/if}}
+                                  <label>Opponent</label>
+                                   <div class="ui input">
+                                      <select id="opponent" class="opponent" required>
+                                        <option disabled="disabled" selected="selected">Please Select Opponent</option> 
+										<!-- Retrieve list of all active users -->
+                                        {{#each users}}
+                                          <option value="{{this._id}}">{{this.username}}</option>
+                                        {{/each}}
+                                      </select>
+                                    </div>
+                                </div>
+								</div>
+                                <div class="field">
+                                    <label>Terms</label>
+                                    <div class="ui input">
+                                        <textarea  rows="3" class="terms" type="text" placeholder="Enter Bet Terms" id="terms" required></textarea>
+                                    </div>
+                                </div>
+								<div class="field">
+                                    <label>Wager</label>
+                                    <div class="ui input icon">
+                                        <input class="wager" type="text" placeholder="Enter Wager" id="wager" required/>
+										<i class="bitcoin icon"></i>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Resolution Date</label>
+                                    <div class="ui input fluid">
+                                        <div class="input-group datetimepicker"> 
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input class="set-due-date form-control" name='resolutionTime' placeholder='Select Resolution Date' type="text" required/>
+                                        </div>
+                                    </div>
+                                </div>
+					            <br>
+                                <br>
+                                <div class="ui two fields center aligned">
+                                  <div class="ui field">
+                                    <button class="create-button ui secondary huge button" id="create" type="submit">Create</button>
+                                  </div>
+							      <div class="ui field">
+					                <button class="cancel-button ui secondary huge button" id="cancel" type="submit">Cancel</button>
+                                  </div>
+						        </div>
+                             </div>
+						  </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="four wide column"></div>
+            </div>
+        </div>
+    </div>
+</template>

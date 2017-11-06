@@ -1,0 +1,21 @@
+<template name="mainHeader">
+  <div class="ui equal width center aligned padded grid">
+    <div class="black row">
+      <div class="four wide column goHome">
+        <img src="/img/betr.png" height="80" width="240" />
+      </div>
+      <div class="column"></div>
+	  <div class="column"></div>
+	    <div class="three wide middle aligned column">
+          <p class="large text goProfile">{{currentUser.username}}</p>
+        </div>
+	    <div class="right aligned column" >
+		  <!-- Only show avi if logged in user, otherwise no data -->
+          {{#if currentUser}} 
+            {{> avatar user=currentUser size='large' shape="circle" class="goProfile"}}
+          {{/if}}
+        </div>
+    </div>
+  </div>
+
+</template>
